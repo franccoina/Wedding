@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
 import { BlossomCarousel } from "@blossom-carousel/react";
 import heroWedding from "./assets/hero-wedding.png";
 import coupleLogo from "./assets/couple-logotype.png";
@@ -13,34 +13,34 @@ import "@blossom-carousel/react/style.css";
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
 
 const events = [
-  { time: "0:00 mm", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
-  { time: "0:00 mm", title: "Recepción", text: "Salón Sagrado Medellín" },
+  { id: 1, time: "0:00 mm", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
+  { id: 2, time: "0:00 mm", title: "Recepción", text: "Salón Sagrado Medellín" },
 ];
 
 const coupleGallery = [
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 1, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 2, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 3, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 4, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 5, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 6, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 7, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 8, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
 ];
 
 const dressCodeGallery = [
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { src: stationery, alt: "Papelería elegante de boda" },
-  { src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 1, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 2, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 3, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 4, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 5, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 6, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 7, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 8, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
 ];
 
 const contactWhatsAppUrl = "https://wa.me/573207701661/?text=Contacto%20de%20Emergencia"
@@ -73,6 +73,7 @@ function App() {
   const [rsvpError, setRsvpError] = useState("");
   const [rsvpSending, setRsvpSending] = useState(false);
   const [attendance, setAttendance] = useState("yes");
+  const [ageRange, setAgeRange] = useState("adult");
   const introVideo = useRef(null);
 
   useEffect(() => {
@@ -107,8 +108,7 @@ function App() {
       attendance,
       fullName: form.get("fullName"),
       phone: form.get("phone"),
-      guests: form.get("guests") || "0",
-      children: form.get("children") || "0",
+      ageRange: form.get("ageRange") || "adult",
       dietary: form.get("dietary") || "",
       message: form.get("message"),
       createdAt: new Date().toISOString(),
@@ -194,7 +194,7 @@ function App() {
 
           <BlossomCarousel className="masonry-carousel">
             {coupleGallery.map((image) => (
-              <div className="masonry-slide" key={image.alt}>
+              <div className="masonry-slide" key={`couple-img-${image.id}`}>
                 <img src={image.src} alt={image.alt} />
               </div>
             ))}
@@ -243,7 +243,7 @@ function App() {
           <div className="timeline-centered">
             {events.map((event, index) => (
               <article
-                key={event.time}
+                key={`events-${event.id}`}
                 className={`timeline-event ${index % 2 === 0 ? "left" : "right"
                   }`}
               >
@@ -276,7 +276,7 @@ function App() {
         <section className="schedule-section paper-section">
           <h3>¿Necesitas más ayuda para llegar?</h3>
           <p>A través de este medio puedes contactarnos por si necesitas orientación mas específica.</p>
-                      <a className="contact-link" href={contactWhatsAppUrl} target="_blank" rel="noreferrer">Contactar vía WhatsApp</a>
+          <a className="contact-link" href={contactWhatsAppUrl} target="_blank" rel="noreferrer">Contactar vía WhatsApp</a>
         </section>
 
         <section className="map-section" id="ubicacion">
@@ -301,7 +301,7 @@ function App() {
 
           <BlossomCarousel className="masonry-carousel">
             {dressCodeGallery.map((image) => (
-              <div className="masonry-slide" key={image.alt}>
+              <div className="masonry-slide" key={`dress-code-img-${image.id}`}>
                 <img src={image.src} alt={image.alt} />
               </div>
             ))}
@@ -344,14 +344,31 @@ function App() {
             <form className="rsvp-form" onSubmit={submitRsvp}>
               <fieldset className="attendance-field">
                 <legend>¿Podrás acompañarnos?</legend>
+                <div className="confirmation-options">
                 <label className={attendance === "yes" ? "selected" : ""}>
-                  <input type="radio" name="attendance" value="yes" checked={attendance === "yes"} onChange={() => setAttendance("yes")} />
-                  Sí, allí estaré
+                  <input
+                    type="radio"
+                    name="attendance"
+                    value="yes"
+                    checked={attendance === "yes"}
+                    onChange={() => setAttendance("yes")}
+                  />
+                  <Check className="h-5 w-5" />
+                  <span>Sí, allí estaré</span>
                 </label>
+
                 <label className={attendance === "no" ? "selected" : ""}>
-                  <input type="radio" name="attendance" value="no" checked={attendance === "no"} onChange={() => setAttendance("no")} />
-                  No podré asistir
+                  <input
+                    type="radio"
+                    name="attendance"
+                    value="no"
+                    checked={attendance === "no"}
+                    onChange={() => setAttendance("no")}
+                  />
+                  <X className="h-5 w-5" />
+                  <span>No podré asistir</span>
                 </label>
+                </div>
               </fieldset>
 
               <div className="form-grid">
@@ -365,24 +382,47 @@ function App() {
                 </label>
                 {attendance === "yes" && (
                   <>
-                    <label>
-                      Número de asistentes
-                      <select name="guests" defaultValue="1">
-                        <option value="1">1 persona</option>
-                        <option value="2">2 personas</option>
-                        <option value="3">3 personas</option>
-                        <option value="4">4 personas</option>
-                      </select>
-                    </label>
-                    <label>
-                      ¿Asistirán niños?
-                      <select name="children" defaultValue="0">
-                        <option value="0">No</option>
-                        <option value="1">Sí, 1 niño</option>
-                        <option value="2">Sí, 2 niños</option>
-                        <option value="3">Sí, 3 niños</option>
-                      </select>
-                    </label>
+                    <fieldset className="attendance-field age-field">
+                      <legend>Rango de edad</legend>
+                      <div className="age-options">
+                        <label className={ageRange === "child" ? "selected" : ""}>
+                          <input
+                            type="radio"
+                            name="ageRange"
+                            value="child"
+                            checked={ageRange === "child"}
+                            onChange={() => setAgeRange("child")}
+                          />
+                          <Baby className="h-5 w-5" />
+                          <span>Niño</span>
+                        </label>
+
+                        <label className={ageRange === "young" ? "selected" : ""}>
+                          <input
+                            type="radio"
+                            name="ageRange"
+                            value="young"
+                            checked={ageRange === "young"}
+                            onChange={() => setAgeRange("young")}
+                          />
+                          <User className="h-5 w-5" />
+                          <span>Joven</span>
+                        </label>
+
+                        <label className={ageRange === "adult" ? "selected" : ""}>
+                          <input
+                            type="radio"
+                            name="ageRange"
+                            value="adult"
+                            checked={ageRange === "adult"}
+                            onChange={() => setAgeRange("adult")}
+                          />
+                          <UserPlus className="h-5 w-5" />
+                          <span>Adulto</span>
+                        </label>
+                      </div>
+                    </fieldset>
+
                     <label className="form-full">
                       Restricciones alimentarias
                       <input name="dietary" placeholder="Vegetariano, alergias u otras indicaciones" />

@@ -104,7 +104,7 @@ dispositivo, configura Google Sheets.
 3. En la primera fila agrega:
 
 ```text
-Fecha | Asistencia | Nombre | Telefono | Invitados | Ninos | Alimentacion | Mensaje | Fecha del dispositivo
+Fecha | Asistencia | Nombre | Telefono | Rango de edad | Alimentacion | Mensaje | Fecha del dispositivo
 ```
 
 ### 2. Configurar Apps Script
@@ -143,11 +143,16 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 .
 |-- google-apps-script/
 |   `-- Code.gs
+|-- public/
+|   |-- img/
+|   `-- favicon.ico
 |-- src/
 |   |-- assets/
+|   |   |-- couple-logotype.png
 |   |   |-- hero-wedding.png
 |   |   |-- invitation-cover.jpg
 |   |   |-- invitation-opening.mp4
+|   |   |-- ornament.png
 |   |   |-- reception.png
 |   |   `-- stationery.png
 |   |-- App.jsx

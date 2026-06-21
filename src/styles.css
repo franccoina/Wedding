@@ -9,16 +9,26 @@
   text-rendering: optimizeLegibility;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100dvw;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body.invitation-locked {
@@ -784,7 +794,8 @@ h3 {
   max-width: 390px;
 }
 
-.map-link, .contact-link {
+.map-link,
+.contact-link {
   border: 1px solid #80652e;
   color: #80652e;
   display: inline-block;
@@ -797,7 +808,8 @@ h3 {
   transition: .3s ease;
 }
 
-.map-link:hover, .contact-link:hover {
+.map-link:hover,
+.contact-link:hover {
   background: #80652e;
   color: #fff;
 }
@@ -909,14 +921,22 @@ h3 {
 }
 
 .attendance-field label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: "Cormorant Garamond", serif;
   border: 1px solid #d8c69c;
   cursor: pointer;
-  display: inline-block;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 19px;
   margin: 0 9px 8px 0;
   padding: 11px 15px;
-  transition: .25s ease;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.attendance-field label svg {
+  transition: all 0.3s ease;
+  stroke-width: 1.8;
 }
 
 .attendance-field label.selected {
@@ -925,8 +945,54 @@ h3 {
   color: #fff;
 }
 
+.attendance-field label.selected svg {
+  transform: scale(1.1);
+}
+
+.attendance-field label:hover {
+  transform: translateY(-2px);
+}
+
 .attendance-field input {
   margin-right: 8px;
+}
+
+.attendance-field input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+}
+
+.confirmation-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.age-field {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.age-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.age-options label {
+  margin: 0;
+  text-align: center;
+}
+
+.age-options input {
+  display: none;
 }
 
 .form-grid {
@@ -944,7 +1010,8 @@ h3 {
   color: #534838;
   display: block;
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
+  font-size: 16px;
+  letter-spacing: normal;
   margin-top: 8px;
   outline: none;
   padding: 11px 12px;
@@ -1041,6 +1108,7 @@ footer .ornament {
 
   .envelope-letter {
     padding: 20px 18px 16px;
+    margin: 14px auto;
   }
 
   .envelope-letter .kicker {
@@ -1055,10 +1123,6 @@ footer .ornament {
 
   .invitation-monogram {
     font-size: 47px;
-  }
-
-  .envelope-letter {
-    margin: 14px auto;
   }
 
   .invitation-copy {
@@ -1165,7 +1229,19 @@ footer .ornament {
   }
 
   .attendance-field label {
-    display: block;
     margin-right: 0;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .age-options,
+  .confirmation-options {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .age-options label {
+    width: 100%;
   }
 }
