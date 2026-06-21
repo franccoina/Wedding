@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
 import { BlossomCarousel } from "@blossom-carousel/react";
+import { Analytics } from '@vercel/analytics/react';
 import heroWedding from "./assets/img/hero-wedding.png";
 import ornament from "./assets/img/ornament.png";
 import stationery from "./assets/img/stationery.png";
@@ -450,6 +451,8 @@ function App() {
         <p className="signature">Nuestra Boda</p>
         <span>25 · 10 · 2026</span>
       </footer>
+
+      <Analytics />
     </>
   );
 }
