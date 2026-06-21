@@ -14,8 +14,8 @@ import "@blossom-carousel/react/style.css";
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
 
 const events = [
-  { id: 1, time: "0:00 mm", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
-  { id: 2, time: "0:00 mm", title: "Recepción", text: "Salón Sagrado Medellín" },
+  { id: 1, time: "Por conf.", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
+  { id: 2, time: "Por conf.", title: "Recepción", text: "Salón Sagrado Medellín" },
 ];
 
 const coupleGallery = [

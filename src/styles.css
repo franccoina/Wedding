@@ -240,52 +240,6 @@ button {
   max-width: 300px;
 }
 
-.seal-button {
-  align-items: center;
-  background: #927137;
-  border: 4px double rgba(255, 255, 255, .47);
-  border-radius: 50%;
-  box-shadow: 0 5px 12px rgba(100, 76, 36, .22);
-  color: #fff5de;
-  cursor: pointer;
-  display: flex;
-  height: 74px;
-  justify-content: center;
-  left: 50%;
-  margin: -37px 0 0 -37px;
-  position: absolute;
-  top: 58%;
-  transition: transform .3s ease, background .3s ease;
-  width: 74px;
-  z-index: 6;
-}
-
-.seal-button::before {
-  border: 1px solid rgba(255, 255, 255, .38);
-  border-radius: 50%;
-  content: "";
-  inset: 7px;
-  position: absolute;
-}
-
-.seal-button:hover {
-  background: #80612f;
-  transform: scale(1.06);
-}
-
-.seal-button span {
-  font-family: "Imperial Script", cursive;
-  font-size: 22px;
-  position: relative;
-}
-
-.is-opening .seal-button {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(.8);
-  transition: .3s ease;
-}
-
 .open-hint {
   color: #80652e;
   font-size: 9px;
@@ -409,13 +363,12 @@ footer em {
 
 .couple-title {
   display: flex;
-  flex-direction: column
+  flex-direction: row;
+  gap: 40px;
 }
 
 .couple-title small {
-  position: relative;
-  bottom: 2vw;
-  font-size: clamp(22px, 12vw, 52px);
+  font-size: clamp(40px, 12vw, 64px);
 }
 
 .hero-date {
@@ -461,8 +414,9 @@ footer em {
 .story-section,
 .schedule-section,
 .gallery-section,
+.details-section,
 .gift-section {
-  padding: 115px clamp(24px, 8vw, 120px);
+  padding: 96px clamp(24px, 8vw, 120px);
 }
 
 h2 {
@@ -572,7 +526,6 @@ h2 {
 
 .details-section {
   background: #e8e1d3;
-  padding: 110px clamp(24px, 8vw, 120px);
   text-align: center;
 }
 
@@ -776,7 +729,7 @@ h3 {
 
 .map-copy {
   align-self: center;
-  padding: 80px clamp(28px, 7vw, 100px);
+  padding: 72px clamp(28px, 7vw, 100px);
 }
 
 .map-copy>p:not(.kicker) {
@@ -824,8 +777,8 @@ h3 {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  min-height: 520px;
-  padding: 40px;
+  min-height: 496px;
+  padding: 48px;
   position: relative;
 }
 
@@ -1101,6 +1054,19 @@ footer .ornament {
   opacity: 0.8;
 }
 
+@media (max-width: 960px) {
+  .couple-title {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .couple-title small {
+    position: relative;
+    font-size: clamp(40px, 11vw, 56px);
+    bottom: 2vw;
+  }
+}
+
 @media (max-width: 720px) {
   .envelope {
     height: 255px;
@@ -1130,16 +1096,6 @@ footer .ornament {
     max-width: 260px;
   }
 
-  .seal-button {
-    height: 62px;
-    margin: -31px 0 0 -31px;
-    width: 62px;
-  }
-
-  .seal-button span {
-    font-size: 19px;
-  }
-
   .is-opening .envelope-letter {
     transform: translateY(-145px);
   }
@@ -1150,6 +1106,10 @@ footer .ornament {
 
   .nav-links {
     display: none;
+  }
+
+  .couple-title small {
+    font-size: clamp(40px, 11vw, 48px);
   }
 
   .story-section,
@@ -1203,7 +1163,7 @@ footer .ornament {
   }
 
   .map-copy {
-    padding: 70px 24px 40px;
+    padding: 72px 24px 40px;
     text-align: center;
   }
 
