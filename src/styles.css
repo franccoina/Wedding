@@ -375,7 +375,7 @@ footer em {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 25px;
   letter-spacing: 8px;
-  margin: 36px 0 32px;
+  margin: 32px 0 36px;
 }
 
 .outline-button {
@@ -1203,5 +1203,19 @@ footer .ornament {
 
   .age-options label {
     width: 100%;
+  }
+}
+
+@media (max-height: 440px) {
+  h1 {
+    font-size: clamp(72px, 12vw, 80px);
+  }
+
+  .couple-title small {
+    font-size: clamp(40px, 11vw, 36px);
+  }
+
+  .hero-date {
+    margin: 8px 0 20px;
   }
 }
