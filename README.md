@@ -1,8 +1,6 @@
 # Invitacion Web de Boda
 
-Landing page en React para una invitacion digital de matrimonio. Incluye una
-introduccion animada, informacion del evento, cuenta regresiva, galeria, mapa
-embebido y formulario de confirmacion de asistencia.
+Landing page en React para una invitacion digital de matrimonio. Incluye una introduccion animada, informacion del evento, cuenta regresiva, galeria, mapa embebido y formulario de confirmacion de asistencia. La invitación y su contenido han sido personalizados para la boda de Daniela y Michael.
 
 ## Tecnologias
 
@@ -66,10 +64,11 @@ npm.cmd run preview
   - Confirmacion o rechazo de asistencia.
   - Nombre completo.
   - Telefono.
-  - Cantidad de asistentes.
-  - Cantidad de ninos.
+  - Rango de edad.
   - Restricciones alimentarias.
   - Mensaje para la pareja.
+
+___Nota:__ Cada asistente debe completar y enviar su propia confirmacion. Si una persona tiene permitido asistir con acompañante, este tambien debera registrar una respuesta independiente en el formulario._
 
 ## Informacion Actual Del Evento
 
@@ -116,13 +115,13 @@ Fecha | Asistencia | Nombre | Telefono | Rango de edad | Alimentacion | Mensaje 
 google-apps-script/Code.gs
 ```
 
-3. Guarda el proyecto.
-4. Selecciona `Implementar > Nueva implementacion`.
-5. Elige `Aplicacion web`.
-6. En `Ejecutar como`, selecciona tu cuenta.
-7. En acceso, selecciona `Cualquier usuario`.
-8. Autoriza el script.
-9. Copia la URL que termina en `/exec`.
+1. Guarda el proyecto.
+2. Selecciona `Implementar > Nueva implementacion`.
+3. Elige `Aplicacion web`.
+4. En `Ejecutar como`, selecciona tu cuenta.
+5. En acceso, selecciona `Cualquier usuario`.
+6. Autoriza el script.
+7. Copia la URL que termina en `/exec`.
 
 ### 3. Configurar El Frontend
 
@@ -133,7 +132,7 @@ google-apps-script/Code.gs
 VITE_RSVP_ENDPOINT=https://script.google.com/macros/s/TU_ID/exec
 ```
 
-3. Reinicia el servidor de desarrollo.
+1. Reinicia el servidor de desarrollo.
 
 Cada envio agregara una fila en la pestana `Confirmaciones`.
 
