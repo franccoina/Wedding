@@ -1206,13 +1206,24 @@ footer .ornament {
   }
 }
 
-@media (max-height: 440px) {
+@media (max-height: 460px) {
   h1 {
-    font-size: clamp(72px, 12vw, 80px);
+    font-size: clamp(72px, 12vw, 76px);
+  }
+
+  .hero-content {
+    padding-bottom: 16px;
+  }
+
+  .couple-title {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
   }
 
   .couple-title small {
-    font-size: clamp(40px, 11vw, 36px);
+    font-size: 40px;
+    bottom: 0;
   }
 
   .hero-date {
