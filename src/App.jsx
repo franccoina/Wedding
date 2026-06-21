@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
 import { BlossomCarousel } from "@blossom-carousel/react";
-import heroWedding from "./assets/hero-wedding.png";
-import coupleLogo from "./assets/couple-logotype.png";
-import ornament from "./assets/ornament.png";
-import stationery from "./assets/stationery.png";
-import reception from "./assets/reception.png";
-import invitationCover from "./assets/invitation-cover.jpg";
-import invitationOpening from "./assets/invitation-opening.mp4";
+import heroWedding from "./assets/img/hero-wedding.png";
+import ornament from "./assets/img/ornament.png";
+import stationery from "./assets/img/stationery.png";
+import reception from "./assets/img/reception.png";
+import invitationCover from "./assets/img/invitation-cover.jpg";
+import invitationOpening from "./assets/vid/invitation-opening.mp4";
+import coupleLogo from "../public/img/couple-logo.png";
 import "@blossom-carousel/react/style.css";
 
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
@@ -345,29 +345,29 @@ function App() {
               <fieldset className="attendance-field">
                 <legend>¿Podrás acompañarnos?</legend>
                 <div className="confirmation-options">
-                <label className={attendance === "yes" ? "selected" : ""}>
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="yes"
-                    checked={attendance === "yes"}
-                    onChange={() => setAttendance("yes")}
-                  />
-                  <Check className="h-5 w-5" />
-                  <span>Sí, allí estaré</span>
-                </label>
+                  <label className={attendance === "yes" ? "selected" : ""}>
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value="yes"
+                      checked={attendance === "yes"}
+                      onChange={() => setAttendance("yes")}
+                    />
+                    <Check className="h-5 w-5" />
+                    <span>Sí, allí estaré</span>
+                  </label>
 
-                <label className={attendance === "no" ? "selected" : ""}>
-                  <input
-                    type="radio"
-                    name="attendance"
-                    value="no"
-                    checked={attendance === "no"}
-                    onChange={() => setAttendance("no")}
-                  />
-                  <X className="h-5 w-5" />
-                  <span>No podré asistir</span>
-                </label>
+                  <label className={attendance === "no" ? "selected" : ""}>
+                    <input
+                      type="radio"
+                      name="attendance"
+                      value="no"
+                      checked={attendance === "no"}
+                      onChange={() => setAttendance("no")}
+                    />
+                    <X className="h-5 w-5" />
+                    <span>No podré asistir</span>
+                  </label>
                 </div>
               </fieldset>
 

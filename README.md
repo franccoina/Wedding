@@ -4,8 +4,8 @@ Landing page en React para una invitacion digital de matrimonio. Incluye una int
 
 ## Tecnologias
 
-- React 18
-- Vite 6
+- React 19
+- Vite 8
 - CSS nativo
 - Google Apps Script para conectar el formulario a Google Sheets
 
@@ -140,27 +140,32 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 
 ```text
 .
-|-- google-apps-script/
-|   `-- Code.gs
-|-- public/
-|   |-- img/
-|   `-- favicon.ico
-|-- src/
-|   |-- assets/
-|   |   |-- couple-logotype.png
-|   |   |-- hero-wedding.png
-|   |   |-- invitation-cover.jpg
-|   |   |-- invitation-opening.mp4
-|   |   |-- ornament.png
-|   |   |-- reception.png
-|   |   `-- stationery.png
-|   |-- App.jsx
-|   |-- main.jsx
-|   `-- styles.css
-|-- .env.example
-|-- index.html
-|-- package.json
-`-- vite.config.js
+├── google-apps-script/
+|   └── Code.gs
+├── public/
+|   ├── img/
+|   └── favicon.ico
+├── src/
+|   ├── assets/
+|   |   ├── couple-logotype.png
+|   |   ├── hero-wedding.png
+|   |   ├── invitation-cover.jpg
+|   |   ├── invitation-opening.mp4
+|   |   ├── ornament.png
+|   |   ├── reception.png
+|   |   └── stationery.png
+|   ├── App.jsx
+|   ├── main.jsx
+|   └── styles.css
+├── .env.example
+├── index.html
+├── vercel-json
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+├── Dockerfile
+├── README.md
+└── ...
 ```
 
 ## Archivos Principales
