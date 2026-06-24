@@ -110,8 +110,16 @@ button {
   z-index: 3;
 }
 
-.flat-section {
-  background: #f7f3eb;
+.light-paper-section {
+  background-image: url("/img/antiquewhite-texture.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.dark-paper-section {
+  background-image: url("/img/beige-texture.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .hero {
@@ -345,9 +353,6 @@ h2 {
 }
 
 .details-section {
-  background-image: url("/img/beige-texture.jpg");
-  background-position: center;
-  background-size: cover;
   text-align: center;
 }
 
@@ -537,9 +542,6 @@ h3 {
 }
 
 .map-section {
-  background-image: url("/img/beige-texture.jpg");
-  background-position: center;
-  background-size: cover;
   display: grid;
   grid-template-columns: minmax(280px, .78fr) minmax(440px, 1.22fr);
 }
@@ -836,7 +838,7 @@ h3 {
 
 footer {
   background-image: url("/img/dark-green-texture.jpg");
-  background-position: center;
+  background-position: top;
   background-size: cover;
   color: #fff;
   padding: 36px 24px;

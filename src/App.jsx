@@ -189,7 +189,7 @@ function App() {
       </header>
 
       <main>
-        <section className="gallery-section weddingLogo" id="bienvenida">
+        <section className="gallery-section light-paper-section" id="bienvenida">
           <p className="kicker">Con mucha alegría</p>
           <h2>¡Nos casamos!</h2>
           <p className="lead">
@@ -219,7 +219,7 @@ function App() {
           </div>
         </section>
 
-        <section className="details-section" id="detalles">
+        <section className="details-section dark-paper-section" id="detalles">
           <p className="kicker">Guarda la fecha</p>
           <h2>El gran día</h2>
           <div className="details-grid">
@@ -241,7 +241,7 @@ function App() {
           </div>
         </section>
 
-        <section className="schedule-section weddingLogo">
+        <section className="schedule-section light-paper-section">
           <p className="kicker">No te pierdas nada</p>
           <h2>Itinerario</h2>
 
@@ -262,7 +262,7 @@ function App() {
           </div>
         </section>
 
-        <section className="map-section" id="ubicacion">
+        <section className="map-section dark-paper-section" id="ubicacion">
           <div className="map-copy">
             <p className="kicker">Cómo llegar</p>
             <p>Parroquia Santa Bárbara de la Ayurá</p>
@@ -278,13 +278,13 @@ function App() {
           />
         </section>
 
-        <section className="schedule-section weddingLogo">
+        <section className="schedule-section light-paper-section">
           <h3>¿Necesitas más ayuda para llegar?</h3>
           <p>A través de este medio puedes contactarnos por si necesitas orientación mas específica.</p>
           <a className="contact-link" href={contactWhatsAppUrl} target="_blank" rel="noreferrer">Contactar vía WhatsApp</a>
         </section>
 
-        <section className="map-section" id="ubicacion">
+        <section className="map-section dark-paper-section" id="ubicacion">
           <div className="map-copy">
             <p className="kicker">Cómo llegar</p>
             <p>Salón Sagrado Medellín</p>
@@ -300,7 +300,7 @@ function App() {
           />
         </section>
 
-        <section className="gallery-section weddingLogo" id="vestimenta">
+        <section className="gallery-section light-paper-section" id="vestimenta">
           <p className="kicker">Referencias de</p>
           <h2>Vestimenta</h2>
 
@@ -319,7 +319,7 @@ function App() {
           </div>
         </section>
 
-        <section className="gift-section weddingLogo" id="regalos">
+        <section className="gift-section light-paper-section" id="regalos">
           <p className="kicker">Lazos en forma de</p>
           <h2>Obsequios</h2>
           <p className="lead">
