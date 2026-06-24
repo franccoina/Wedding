@@ -7,7 +7,8 @@ Landing page en React para una invitacion digital de matrimonio. Incluye una int
 - React 19
 - Vite 8
 - CSS nativo
-- Google Apps Script para conectar el formulario a Google Sheets
+- Google Apps Script para conectar el formulario a Google Sheets y enviar
+  correos de notificacion (Google Sheets + MailApp)
 
 ## Requisitos
 
@@ -64,9 +65,14 @@ npm.cmd run preview
   - Confirmacion o rechazo de asistencia.
   - Nombre completo.
   - Telefono.
-  - Rango de edad.
-  - Restricciones alimentarias.
+  - Rango de edad (solo si asiste).
+  - Restricciones alimentarias (solo si asiste).
   - Mensaje para la pareja.
+- En cada envio del formulario, de forma automatica y en una sola peticion:
+  - Se agrega una fila nueva en Google Sheets.
+  - Se envia un correo HTML de notificacion a los administradores.
+- Musica de fondo instrumental con control para activar/desactivar y
+  preferencia recordada en `localStorage`.
 
 ___Nota:__ Cada asistente debe completar y enviar su propia confirmacion. Si una persona tiene permitido asistir con acompañante, este tambien debera registrar una respuesta independiente en el formulario._
 
@@ -99,11 +105,13 @@ dispositivo, configura Google Sheets.
 ### 1. Crear La Hoja
 
 1. Crea una hoja de calculo en Google Sheets.
-2. Renombra la primera pestana como `Confirmaciones`.
-3. En la primera fila agrega:
+
+No necesitas crear la pestana ni los encabezados manualmente: el script crea
+la pestana `Confirmaciones` y escribe la fila de encabezados automaticamente la
+primera vez que recibe un envio. Las columnas generadas son:
 
 ```text
-Fecha | Asistencia | Nombre | Telefono | Rango de edad | Alimentacion | Mensaje | Fecha del dispositivo
+Fecha de registro | Asistencia | Nombre completo | Telefono | Rango de edad | Restricciones alimentarias | Mensaje | Fecha del dispositivo | Origen
 ```
 
 ### 2. Configurar Apps Script
@@ -115,13 +123,19 @@ Fecha | Asistencia | Nombre | Telefono | Rango de edad | Alimentacion | Mensaje 
 google-apps-script/Code.gs
 ```
 
-1. Guarda el proyecto.
-2. Selecciona `Implementar > Nueva implementacion`.
-3. Elige `Aplicacion web`.
-4. En `Ejecutar como`, selecciona tu cuenta.
-5. En acceso, selecciona `Cualquier usuario`.
-6. Autoriza el script.
-7. Copia la URL que termina en `/exec`.
+3. Edita la lista `NOTIFICATION_EMAILS` (al inicio del archivo) con los correos
+   que deben recibir las notificaciones. Puedes agregar o quitar destinatarios.
+4. Guarda el proyecto.
+5. Selecciona `Implementar > Nueva implementacion`.
+6. Elige `Aplicacion web`.
+7. En `Ejecutar como`, selecciona tu cuenta.
+8. En acceso, selecciona `Cualquier usuario`.
+9. Autoriza el script (incluye permiso para enviar correos en tu nombre).
+10. Copia la URL que termina en `/exec`.
+
+> El envio de correos ocurre en Apps Script (no en el navegador), por lo que la
+> lista de destinatarios se configura en `Code.gs`. Si el correo falla, la fila
+> en Sheets se guarda igualmente y el invitado ve confirmacion de exito.
 
 ### 3. Configurar El Frontend
 
@@ -141,25 +155,30 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 ```text
 .
 ├── google-apps-script/
-|   └── Code.gs
+|   └── Code.gs            # Endpoint: registra en Sheets + envia correos
 ├── public/
+|   ├── audio/             # Coloca aqui wedding-background.mp3
 |   ├── img/
 |   └── favicon.ico
 ├── src/
 |   ├── assets/
-|   |   ├── couple-logotype.png
-|   |   ├── hero-wedding.png
-|   |   ├── invitation-cover.jpg
-|   |   ├── invitation-opening.mp4
-|   |   ├── ornament.png
-|   |   ├── reception.png
-|   |   └── stationery.png
+|   |   ├── audio/         # (placeholder) la musica vive en public/audio
+|   |   ├── img/
+|   |   └── vid/
+|   ├── components/
+|   |   └── MusicToggle.jsx
+|   ├── config/
+|   |   └── rsvp.js        # Endpoint, ruta de audio y etiquetas
+|   ├── hooks/
+|   |   └── useBackgroundMusic.js
+|   ├── services/
+|   |   └── rsvpService.js # Construye, valida y envia el RSVP
 |   ├── App.jsx
 |   ├── main.jsx
 |   └── styles.css
 ├── .env.example
 ├── index.html
-├── vercel-json
+├── vercel.json
 ├── package.json
 ├── vite.config.js
 ├── eslint.config.js
@@ -172,9 +191,25 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 
 - `src/App.jsx`: contenido, secciones y comportamiento.
 - `src/styles.css`: estilos visuales y responsive.
-- `src/assets/`: imagenes y video usados por la invitacion.
-- `google-apps-script/Code.gs`: endpoint que agrega filas a Google Sheets.
+- `src/config/rsvp.js`: variables (endpoint, ruta de audio) y etiquetas.
+- `src/services/rsvpService.js`: construye, valida y envia el RSVP.
+- `src/hooks/useBackgroundMusic.js`: logica de la musica de fondo.
+- `src/components/MusicToggle.jsx`: control para activar/desactivar la musica.
+- `src/assets/`: imagenes (`img/`) y video (`vid/`) usados por la invitacion.
+- `public/audio/`: ubicacion del MP3 de fondo (`wedding-background.mp3`).
+- `google-apps-script/Code.gs`: agrega filas a Google Sheets y envia correos.
 - `.env.example`: plantilla para configurar la URL de Apps Script.
+
+## Musica De Fondo
+
+1. Coloca un MP3 instrumental libre de derechos en
+   `public/audio/wedding-background.mp3` (ver `public/audio/README.md`).
+2. La musica inicia automaticamente; si el navegador bloquea el autoplay,
+   arranca tras la primera interaccion del usuario.
+3. Se reproduce en bucle, a volumen bajo (~24 %) y mantiene el estado entre
+   secciones.
+4. El boton flotante permite silenciarla y la preferencia se guarda en
+   `localStorage`. Si no hay archivo de audio, el boton no se muestra.
 
 ## Notas De Implementacion
 

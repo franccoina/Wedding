@@ -2,20 +2,29 @@ import { useEffect, useRef, useState } from "react";
 import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
 import { BlossomCarousel } from "@blossom-carousel/react";
 import { Analytics } from '@vercel/analytics/react';
+import { MusicToggle } from "./components/MusicToggle";
+import { backgroundAudioSrc } from "./config/rsvp";
+import { useBackgroundMusic } from "./hooks/useBackgroundMusic";
+import {
+  buildRsvpPayload,
+  submitRsvpPayload,
+  validateRsvpPayload,
+} from "./services/rsvpService";
 import heroWedding from "./assets/img/hero-wedding.png";
-import ornament from "./assets/img/ornament.png";
+import ringsOrnament from "./assets/img/rings-ornament.png";
+import bowOrnament from "./assets/img/bow-ornament.png";
 import stationery from "./assets/img/stationery.png";
 import reception from "./assets/img/reception.png";
 import invitationCover from "./assets/img/invitation-cover.jpg";
 import invitationOpening from "./assets/vid/invitation-opening.mp4";
-import coupleLogo from "../public/img/couple-logo.png";
+import weddingLogo from "../public/img/wedding-logo.png";
 import "@blossom-carousel/react/style.css";
 
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
 
 const events = [
-  { id: 1, time: "Por conf.", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
-  { id: 2, time: "Por conf.", title: "Recepción", text: "Salón Sagrado Medellín" },
+  { id: 1, time: "1:00 pm", title: "Ceremonia", text: "Parroquia Santa Bárbara de la Ayurá" },
+  { id: 2, time: "2:30 pm", title: "Recepción", text: "Salón Sagrado Medellín" },
 ];
 
 const coupleGallery = [
@@ -44,15 +53,13 @@ const dressCodeGallery = [
   { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
 ];
 
-const contactWhatsAppUrl = "https://wa.me/573207701661/?text=Contacto%20de%20Emergencia"
+const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! Necesito un poco más de información sobre cómo llegar a los eventos. ¿Por favor me podrían ayudar con las indicaciones? 😅🙏";
 
 const mapUrlReception = "https://www.google.com/maps?rlz=1C1GCEA_enCO1178CO1178&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDIzMjlqMGo3qAIAsAIA&um=1&ie=UTF-8&fb=1&gl=co&sa=X&geocode=KZXN_6HLg0aOMRPmvgEX_yRq&daddr=v%C3%ADa+la+catedral,+Vereda+el+vallano+%23Kil%C3%B3metro+4,+Envigado,+Antioquia";
 const mapEmbedUrlReception = "https://www.google.com/maps?q=Sagrado%20Medell%C3%ADn%2C%20V%C3%ADa%20La%20Catedral%2C%20Vereda%20El%20Vallano%2C%20Envigado%2C%20Antioquia&t=k&output=embed";
 
 const mapUrlCeremony = "https://www.google.com/maps/search/?api=1&query=Parroquia+Santa+B%C3%A1rbara+de+la+Ayur%C3%A1,+Diagonal+31+%2334B+Sur-13,+Envigado,+Antioquia";
 const mapEmbedUrlCeremony = "https://www.google.com/maps?q=Parroquia%20Santa%20B%C3%A1rbara%20de%20la%20Ayur%C3%A1%2C%20Diagonal%2031%20%2334B%20Sur-13%2C%20Envigado%2C%20Antioquia&t=k&output=embed";
-
-const rsvpEndpoint = import.meta.env.VITE_RSVP_ENDPOINT;
 
 function getCountdown() {
   const distance = Math.max(0, weddingDate.getTime() - Date.now());
@@ -73,9 +80,11 @@ function App() {
   const [rsvpSent, setRsvpSent] = useState(false);
   const [rsvpError, setRsvpError] = useState("");
   const [rsvpSending, setRsvpSending] = useState(false);
+  const [rsvpData, setRsvpData] = useState(null);
   const [attendance, setAttendance] = useState("yes");
   const [ageRange, setAgeRange] = useState("adult");
   const introVideo = useRef(null);
+  const music = useBackgroundMusic(backgroundAudioSrc);
 
   useEffect(() => {
     const intervalId = setInterval(() => setCountdown(getCountdown()), 1000);
@@ -104,36 +113,31 @@ function App() {
 
   async function submitRsvp(event) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const response = {
-      attendance,
-      fullName: form.get("fullName"),
-      phone: form.get("phone"),
-      ageRange: form.get("ageRange") || "adult",
-      dietary: form.get("dietary") || "",
-      message: form.get("message"),
-      createdAt: new Date().toISOString(),
-    };
+    // Keep a reference to the form element: event.currentTarget becomes null
+    // after the first await, so it cannot be used for reset() later on.
+    const formElement = event.currentTarget;
+    const payload = buildRsvpPayload(new FormData(formElement), attendance);
+    const validationError = validateRsvpPayload(payload);
+
+    if (validationError) {
+      setRsvpError(validationError);
+      return;
+    }
 
     setRsvpSending(true);
     setRsvpError("");
 
     try {
-      if (rsvpEndpoint) {
-        await fetch(rsvpEndpoint, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(response),
-        });
-      } else {
-        const responses = JSON.parse(localStorage.getItem("wedding-rsvps") || "[]");
-        responses.push(response);
-        localStorage.setItem("wedding-rsvps", JSON.stringify(responses));
-      }
-      event.currentTarget.reset();
+      await submitRsvpPayload(payload);
+
+      setRsvpData(payload);
+
+      formElement.reset();
+      setAttendance("yes");
+      setAgeRange("adult");
       setRsvpSent(true);
-    } catch {
+    } catch (error) {
+      console.error("No se pudo registrar el RSVP:", error);
       setRsvpError("No pudimos registrar tu respuesta. Inténtalo nuevamente.");
     } finally {
       setRsvpSending(false);
@@ -161,7 +165,7 @@ function App() {
       <header className="hero" id="inicio" style={{ backgroundImage: `url(${heroWedding})` }}>
         <nav className="navbar">
           <a className="brand" href="#inicio">
-            <img src={coupleLogo} width={40} height={40} alt="couple-logo" />
+            <img src={weddingLogo} width={40} height={40} alt="wedding-logo" />
           </a>
           <div className="nav-links">
             <a href="#detalles">El gran día</a>
@@ -185,7 +189,7 @@ function App() {
       </header>
 
       <main>
-        <section className="gallery-section paper-section" id="bienvenida">
+        <section className="gallery-section weddingLogo" id="bienvenida">
           <p className="kicker">Con mucha alegría</p>
           <h2>¡Nos casamos!</h2>
           <p className="lead">
@@ -237,7 +241,7 @@ function App() {
           </div>
         </section>
 
-        <section className="schedule-section paper-section">
+        <section className="schedule-section weddingLogo">
           <p className="kicker">No te pierdas nada</p>
           <h2>Itinerario</h2>
 
@@ -274,7 +278,7 @@ function App() {
           />
         </section>
 
-        <section className="schedule-section paper-section">
+        <section className="schedule-section weddingLogo">
           <h3>¿Necesitas más ayuda para llegar?</h3>
           <p>A través de este medio puedes contactarnos por si necesitas orientación mas específica.</p>
           <a className="contact-link" href={contactWhatsAppUrl} target="_blank" rel="noreferrer">Contactar vía WhatsApp</a>
@@ -296,7 +300,7 @@ function App() {
           />
         </section>
 
-        <section className="gallery-section paper-section" id="vestimenta">
+        <section className="gallery-section weddingLogo" id="vestimenta">
           <p className="kicker">Referencias de</p>
           <h2>Vestimenta</h2>
 
@@ -311,12 +315,11 @@ function App() {
 
         <section className="quote-section" style={{ backgroundImage: `url(${reception})` }}>
           <div>
-            <p>“El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección.”</p>
-            <span>Antoine de Saint-Exupéry</span>
+            <p>“De la suerte de encontrarnos a la fortuna de tenernos.”</p>
           </div>
         </section>
 
-        <section className="gift-section paper-section" id="regalos">
+        <section className="gift-section weddingLogo" id="regalos">
           <p className="kicker">Lazos en forma de</p>
           <h2>Obsequios</h2>
           <p className="lead">
@@ -336,9 +339,19 @@ function App() {
           </div>
           {rsvpSent ? (
             <div className="rsvp-confirmation">
-              <span>♡</span>
-              <h3>¡Gracias por responder!</h3>
-              <p>Hemos registrado tu respuesta. Nos alegra compartir este momento contigo.</p>
+              <div className="ornament">
+                <img src={bowOrnament} width={88} height="auto" alt="bow-ornament" />
+              </div>
+              <h3>
+                {rsvpData?.attendance === "yes"
+                  ? "¡Gracias por confirmar!"
+                  : "¡Gracias por avisar!"}
+              </h3>
+              <p>
+                {rsvpData?.attendance === "yes"
+                  ? "Hemos registrado tu respuesta. Nos alegra compartir este momento tan especial contigo."
+                  : "Hemos registrado tu respuesta. Aunque no puedas asistir, te tendremos presente."}
+              </p>
               <button type="button" onClick={() => setRsvpSent(false)}>Enviar otra respuesta</button>
             </div>
           ) : (
@@ -446,11 +459,18 @@ function App() {
 
       <footer>
         <div className="ornament">
-          <img src={ornament} width={88} height="auto" alt="ornament" />
+          <img src={ringsOrnament} width={88} height="auto" alt="rings-ornament" />
         </div>
         <p className="signature">Nuestra Boda</p>
         <span>25 · 10 · 2026</span>
       </footer>
+
+      <MusicToggle
+        enabled={music.enabled}
+        playing={music.playing}
+        unavailable={music.unavailable}
+        onToggle={music.toggle}
+      />
 
       <Analytics />
     </>

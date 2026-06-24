@@ -110,154 +110,8 @@ button {
   z-index: 3;
 }
 
-.invitation-cover-bg {
-  background-position: center;
-  background-size: cover;
-  filter: blur(2px);
-  inset: -10px;
-  opacity: .22;
-  position: absolute;
-  transform: scale(1.08);
-}
-
-.envelope-scene {
-  max-width: 670px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-
-.envelope {
-  filter: drop-shadow(0 24px 25px rgba(77, 65, 39, .28));
-  height: 390px;
-  margin: auto;
-  max-width: 620px;
-  perspective: 1200px;
-  position: relative;
-  width: 100%;
-}
-
-.envelope-back {
-  background: #dfcfb1;
-  border: 1px solid #c0aa7c;
-  inset: 0;
-  position: absolute;
-}
-
-.envelope-letter {
-  background-color: #faf6ed;
-  background-image: radial-gradient(rgba(117, 100, 65, .13) .55px, transparent .55px);
-  background-size: 5px 5px;
-  border: 1px solid #c7b077;
-  bottom: 18px;
-  left: 8%;
-  padding: 33px 28px 25px;
-  position: absolute;
-  transition: transform 1s cubic-bezier(.2, .65, .22, 1) .48s;
-  width: 84%;
-  z-index: 2;
-}
-
-.envelope-letter::before {
-  border: 1px solid rgba(172, 143, 82, .55);
-  content: "";
-  inset: 9px;
-  pointer-events: none;
-  position: absolute;
-}
-
-.envelope-pocket-left,
-.envelope-pocket-right,
-.envelope-pocket-bottom {
-  bottom: 0;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  z-index: 3;
-}
-
-.envelope-pocket-left {
-  background: #eadcc1;
-  clip-path: polygon(0 0, 54% 54%, 0 100%);
-}
-
-.envelope-pocket-right {
-  background: #e1cfad;
-  clip-path: polygon(100% 0, 46% 54%, 100% 100%);
-}
-
-.envelope-pocket-bottom {
-  background: #f0e3cb;
-  clip-path: polygon(0 100%, 50% 46%, 100% 100%);
-}
-
-.envelope-flap {
-  background: #d7c49e;
-  clip-path: polygon(0 0, 50% 62%, 100% 0);
-  height: 64%;
-  position: absolute;
-  top: 0;
-  transform-origin: top;
-  transition: transform .8s cubic-bezier(.3, .7, .2, 1);
-  width: 100%;
-  z-index: 5;
-}
-
-.is-opening .envelope-flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.is-opening .envelope-letter {
-  transform: translateY(-230px);
-  z-index: 4;
-}
-
-.invitation-for {
-  color: #80652e;
-  font-family: "Imperial Script", cursive;
-  font-size: 44px;
-  margin: 10px 0 18px;
-}
-
-.invitation-monogram {
-  color: #546449;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 64px;
-  line-height: .9;
-}
-
-.invitation-monogram em {
-  color: #a98b54;
-  font-family: "Imperial Script", cursive;
-}
-
-.invitation-copy {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 20px;
-  line-height: 1.45;
-  margin: 0 auto;
-  max-width: 300px;
-}
-
-.open-hint {
-  color: #80652e;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin: 24px 0 0;
-  text-transform: uppercase;
-  transition: opacity .3s ease;
-}
-
-.is-opening .open-hint {
-  opacity: 0;
-}
-
-.paper-section {
-  background-color: #f7f3eb;
-  background-image: radial-gradient(rgba(117, 100, 65, .12) .55px, transparent .55px);
-  background-size: 5px 5px;
+.flat-section {
+  background: #f7f3eb;
 }
 
 .hero {
@@ -411,7 +265,6 @@ footer em {
   width: 20px
 }
 
-.story-section,
 .schedule-section,
 .gallery-section,
 .details-section,
@@ -444,7 +297,9 @@ h2 {
 
 .countdown-section,
 .rsvp-section {
-  background: #405137;
+  background-image: url("/img/light-green-texture.jpg");
+  background-position: top;
+  background-size: cover;
   color: #fff;
   padding: 86px 24px;
   text-align: center;
@@ -489,43 +344,10 @@ h2 {
   text-transform: uppercase;
 }
 
-.editorial-grid {
-  align-items: center;
-  display: grid;
-  gap: clamp(38px, 7vw, 100px);
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
-  max-width: 1080px;
-}
-
-.editorial-image {
-  border: 1px solid #cab98e;
-  padding: 12px;
-  position: relative;
-}
-
-.editorial-image::after {
-  border: 1px solid #cab98e;
-  content: "";
-  inset: -10px 10px 10px -10px;
-  pointer-events: none;
-  position: absolute;
-}
-
-.editorial-image img {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  width: 100%;
-}
-
-.editorial-copy p:not(.kicker) {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 21px;
-  line-height: 1.55;
-}
-
 .details-section {
-  background: #e8e1d3;
+  background-image: url("/img/beige-texture.jpg");
+  background-position: center;
+  background-size: cover;
   text-align: center;
 }
 
@@ -542,13 +364,6 @@ h2 {
   background: rgba(255, 255, 255, .46);
   border: 1px solid rgba(183, 163, 117, .42);
   padding: 34px 22px;
-}
-
-.line-icon {
-  color: #967735;
-  display: block;
-  font-size: 31px;
-  margin-bottom: 13px;
 }
 
 h3 {
@@ -722,7 +537,9 @@ h3 {
 }
 
 .map-section {
-  background: #e8e1d3;
+  background-image: url("/img/beige-texture.jpg");
+  background-position: center;
+  background-size: cover;
   display: grid;
   grid-template-columns: minmax(280px, .78fr) minmax(440px, 1.22fr);
 }
@@ -777,7 +594,7 @@ h3 {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  min-height: 496px;
+  min-height: 416px;
   padding: 48px;
   position: relative;
 }
@@ -824,22 +641,10 @@ h3 {
   max-width: 390px;
 }
 
-.gift-card span {
-  color: #a98b54;
-  font-size: 31px;
-}
-
 .rsvp-intro p {
   font-family: "Cormorant Garamond", serif;
   font-size: 21px;
   margin: 18px auto 28px;
-}
-
-.rsvp-intro span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 32px;
 }
 
 .rsvp-form,
@@ -906,10 +711,6 @@ h3 {
   transform: translateY(-2px);
 }
 
-.attendance-field input {
-  margin-right: 8px;
-}
-
 .attendance-field input[type="radio"] {
   position: absolute;
   width: 1px;
@@ -955,7 +756,6 @@ h3 {
 }
 
 .form-grid input,
-.form-grid select,
 .form-grid textarea {
   background: rgba(255, 255, 255, .72);
   border: 1px solid #d8c69c;
@@ -974,7 +774,6 @@ h3 {
 }
 
 .form-grid input:focus,
-.form-grid select:focus,
 .form-grid textarea:focus {
   border-color: #80652e;
   box-shadow: 0 0 0 2px rgba(169, 139, 84, .16);
@@ -1036,7 +835,9 @@ h3 {
 }
 
 footer {
-  background: #2d3929;
+  background-image: url("/img/dark-green-texture.jpg");
+  background-position: center;
+  background-size: cover;
   color: #fff;
   padding: 34px 24px;
   text-align: center;
@@ -1047,11 +848,66 @@ footer .signature {
   margin: 0 0 10px;
 }
 
-footer .ornament {
+footer .ornament,
+.rsvp-confirmation .ornament {
   display: flex;
   justify-content: center;
   margin: 8px 0 16px;
   opacity: 0.8;
+}
+
+.music-toggle {
+  align-items: center;
+  background: hsla(105, 16%, 34%, 0.92);
+  border: none;
+  border-radius: 50%;
+  bottom: 22px;
+  color: #f2e8d4;
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  padding: 0;
+  position: fixed;
+  right: 22px;
+  transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+  width: 50px;
+  z-index: 15;
+  box-shadow: 0 6px 18px rgba(45, 57, 41, .28);
+}
+
+.music-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.music-toggle:hover {
+  background: #57694e;
+  transform: scale(1.06);
+}
+
+.music-toggle.is-playing {
+  animation: music-pulse 2.4s ease-out infinite;
+}
+
+@keyframes music-pulse {
+  0% {
+    box-shadow: 0 6px 18px rgba(45, 57, 41, .28), 0 0 0 0 rgba(169, 139, 84, .5);
+  }
+
+  70% {
+    box-shadow: 0 6px 18px rgba(45, 57, 41, .28), 0 0 0 12px rgba(169, 139, 84, 0);
+  }
+
+  100% {
+    box-shadow: 0 6px 18px rgba(45, 57, 41, .28), 0 0 0 0 rgba(169, 139, 84, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle.is-playing {
+    animation: none;
+  }
 }
 
 @media (max-width: 960px) {
@@ -1068,38 +924,6 @@ footer .ornament {
 }
 
 @media (max-width: 720px) {
-  .envelope {
-    height: 255px;
-  }
-
-  .envelope-letter {
-    padding: 20px 18px 16px;
-    margin: 14px auto;
-  }
-
-  .envelope-letter .kicker {
-    font-size: 8px;
-    margin-bottom: 8px;
-  }
-
-  .invitation-for {
-    font-size: 32px;
-    margin: 4px 0 10px;
-  }
-
-  .invitation-monogram {
-    font-size: 47px;
-  }
-
-  .invitation-copy {
-    font-size: 16px;
-    max-width: 260px;
-  }
-
-  .is-opening .envelope-letter {
-    transform: translateY(-145px);
-  }
-
   .navbar {
     justify-content: center;
   }
@@ -1112,7 +936,6 @@ footer .ornament {
     font-size: clamp(40px, 11vw, 48px);
   }
 
-  .story-section,
   .schedule-section,
   .gallery-section,
   .gift-section {
@@ -1140,13 +963,8 @@ footer .ornament {
     letter-spacing: 1px;
   }
 
-  .editorial-grid,
   .details-grid {
     grid-template-columns: 1fr;
-  }
-
-  .editorial-copy {
-    padding-top: 18px;
   }
 
   .details-section {
@@ -1190,6 +1008,13 @@ footer .ornament {
 
   .attendance-field label {
     margin-right: 0;
+  }
+
+  .music-toggle {
+    bottom: 16px;
+    right: 16px;
+    height: 46px;
+    width: 46px;
   }
 }
 
