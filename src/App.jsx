@@ -53,7 +53,7 @@ const dressCodeGallery = [
   { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
 ];
 
-const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! Necesito un poco más de información sobre cómo llegar a los eventos. ¿Por favor me podrían ayudar con las indicaciones? 😅🙏";
+const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! ¿Por favor podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
 
 const mapUrlReception = "https://www.google.com/maps?rlz=1C1GCEA_enCO1178CO1178&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDIzMjlqMGo3qAIAsAIA&um=1&ie=UTF-8&fb=1&gl=co&sa=X&geocode=KZXN_6HLg0aOMRPmvgEX_yRq&daddr=v%C3%ADa+la+catedral,+Vereda+el+vallano+%23Kil%C3%B3metro+4,+Envigado,+Antioquia";
 const mapEmbedUrlReception = "https://www.google.com/maps?q=Sagrado%20Medell%C3%ADn%2C%20V%C3%ADa%20La%20Catedral%2C%20Vereda%20El%20Vallano%2C%20Envigado%2C%20Antioquia&t=k&output=embed";
