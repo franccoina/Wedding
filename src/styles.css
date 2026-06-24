@@ -596,7 +596,7 @@ h3 {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  min-height: 416px;
+  min-height: 432px;
   padding: 48px;
   position: relative;
 }
@@ -923,6 +923,11 @@ footer .ornament,
     font-size: clamp(40px, 11vw, 56px);
     bottom: 2vw;
   }
+
+  .quote-section {
+    background-attachment: scroll;
+    min-height: 360px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -971,11 +976,6 @@ footer .ornament,
 
   .details-section {
     padding: 86px 24px;
-  }
-
-  .quote-section {
-    background-attachment: scroll;
-    min-height: 420px;
   }
 
   .map-section {
