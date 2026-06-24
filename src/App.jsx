@@ -226,7 +226,7 @@ function App() {
             <article>
               <h3>Cuándo</h3>
               <p>Domingo<br /><b>25 de octubre de 2026</b></p>
-              <small>Horario por confirmar</small>
+              <small>Horario según itinerario</small>
             </article>
             <article>
               <h3>Dónde</h3>
