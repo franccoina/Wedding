@@ -18,7 +18,6 @@
 // Recipients of the notification email. Add or remove freely.
 const NOTIFICATION_EMAILS = [
   "danielaymichael.site@gmail.com",
-  "franccoina@gmail.com",
   // "correo2@gmail.com",
   // "correo3@gmail.com",
 ];
