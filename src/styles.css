@@ -839,7 +839,7 @@ footer {
   background-position: center;
   background-size: cover;
   color: #fff;
-  padding: 34px 24px;
+  padding: 36px 24px;
   text-align: center;
 }
 
@@ -858,7 +858,7 @@ footer .ornament,
 
 .music-toggle {
   align-items: center;
-  background: hsla(105, 16%, 34%, 0.92);
+  background: #4E6448;
   border: none;
   border-radius: 50%;
   bottom: 22px;
@@ -998,6 +998,10 @@ footer .ornament,
     padding: 22px 18px;
   }
 
+  .rsvp-section {
+    padding-bottom: 72px;
+  }
+
   .form-grid {
     grid-template-columns: 1fr;
   }
@@ -1015,6 +1019,10 @@ footer .ornament,
     right: 16px;
     height: 46px;
     width: 46px;
+  }
+
+  footer {
+    padding: 48px 24px;
   }
 }
 
