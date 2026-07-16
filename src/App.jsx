@@ -10,14 +10,25 @@ import {
   submitRsvpPayload,
   validateRsvpPayload,
 } from "./services/rsvpService";
-import heroWedding from "./assets/img/hero-wedding.png";
-import ringsOrnament from "./assets/img/rings-ornament.png";
-import bowOrnament from "./assets/img/bow-ornament.png";
-import stationery from "./assets/img/stationery.png";
-import reception from "./assets/img/reception.png";
-import invitationCover from "./assets/img/invitation-cover.jpg";
+
+import weddingLogo from "../public/img/wedding-logo.webp";
+import invitationCover from "./assets/img/invitation-cover.webp";
 import invitationOpening from "./assets/vid/invitation-opening.mp4";
-import weddingLogo from "../public/img/wedding-logo.png";
+
+import heroWedding from "./assets/img/hero-wedding.webp";
+import couple1 from "./assets/img/couple-1.webp";
+import couple2 from "./assets/img/couple-2.webp";
+import couple3 from "./assets/img/couple-3.webp";
+import couple4 from "./assets/img/couple-4.webp";
+import couple5 from "./assets/img/couple-5.webp";
+import couple6 from "./assets/img/couple-6.webp";
+import couple7 from "./assets/img/couple-7.webp";
+import couple8 from "./assets/img/couple-8.webp";
+import couple9 from "./assets/img/couple-9.webp";
+
+import ringsOrnament from "./assets/img/rings-ornament.webp";
+import bowOrnament from "./assets/img/bow-ornament.webp";
+import reception from "./assets/img/reception.webp";
 import "@blossom-carousel/react/style.css";
 
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
@@ -28,29 +39,27 @@ const events = [
 ];
 
 const coupleGallery = [
-  { id: 1, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 2, src: stationery, alt: "Papelería elegante de boda" },
-  { id: 3, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 4, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 5, src: stationery, alt: "Papelería elegante de boda" },
-  { id: 6, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 7, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 8, src: stationery, alt: "Papelería elegante de boda" },
-  { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
+  { id: 1, src: couple1, alt: "Pareja viéndose abarazados de cerca" },
+  { id: 2, src: couple2, alt: "Pareja caminando en un campo en sepia" },
+  { id: 3, src: couple3, alt: "Pareja caminando agarrados del brazo" },
+  { id: 4, src: couple4, alt: "Pareja viéndose sentados en blanco y negro" },
+  { id: 5, src: couple5, alt: "Pareja corriendo en un campo en sepia" },
+  { id: 6, src: couple6, alt: "Pareja viéndose de costado de cerca" },
+  { id: 7, src: couple7, alt: "Pareja agarrados de la mano de cerca" },
+  { id: 8, src: couple8, alt: "Pareja tocando sus manos de cerca en blanco y negro" },
+  { id: 9, src: couple9, alt: "Pareja acostados en un campo" },
 ];
 
 const dressCodeGallery = [
-  { id: 1, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 2, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 1, src: reception, alt: "Pareja caminando en una hacienda" },
+  { id: 2, src: reception, alt: "Papelería elegante de boda" },
   { id: 3, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 4, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 5, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 4, src: reception, alt: "Pareja caminando en una hacienda" },
+  { id: 5, src: reception, alt: "Papelería elegante de boda" },
   { id: 6, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 7, src: heroWedding, alt: "Pareja caminando en una hacienda" },
-  { id: 8, src: stationery, alt: "Papelería elegante de boda" },
+  { id: 7, src: reception, alt: "Pareja caminando en una hacienda" },
+  { id: 8, src: reception, alt: "Papelería elegante de boda" },
   { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 10, src: heroWedding, alt: "Pareja caminando en una hacienda" },
 ];
 
 const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! ¿Por favor podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
@@ -340,7 +349,7 @@ function App() {
           {rsvpSent ? (
             <div className="rsvp-confirmation">
               <div className="ornament">
-                <img src={bowOrnament} width={88} height="auto" alt="bow-ornament" />
+                <img src={bowOrnament} width={88} height="auto" loading="lazy" alt="bow-ornament" />
               </div>
               <h3>
                 {rsvpData?.attendance === "yes"
@@ -459,7 +468,7 @@ function App() {
 
       <footer>
         <div className="ornament">
-          <img src={ringsOrnament} width={88} height="auto" alt="rings-ornament" />
+          <img src={ringsOrnament} width={88} height="auto" loading="lazy" alt="rings-ornament" />
         </div>
         <p className="signature">Nuestra Boda</p>
         <span>25 · 10 · 2026</span>

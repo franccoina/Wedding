@@ -111,13 +111,13 @@ button {
 }
 
 .light-paper-section {
-  background-image: url("/img/antiquewhite-texture.jpg");
+  background-image: url("/img/antiquewhite-texture.webp");
   background-position: center;
   background-size: cover;
 }
 
 .dark-paper-section {
-  background-image: url("/img/beige-texture.jpg");
+  background-image: url("/img/beige-texture.webp");
   background-position: center;
   background-size: cover;
 }
@@ -305,7 +305,7 @@ h2 {
 
 .countdown-section,
 .rsvp-section {
-  background-image: url("/img/light-green-texture.jpg");
+  background-image: url("/img/light-green-texture.webp");
   background-position: top;
   background-size: cover;
   color: #fff;
@@ -496,8 +496,8 @@ h3 {
 
 .masonry-carousel {
   display: grid;
-  grid-auto-columns: 280px;
-  grid-template-rows: repeat(3, 128px);
+  grid-auto-columns: 200px;
+  grid-template-rows: repeat(3, 160px);
   grid-auto-flow: column dense;
   border-radius: 10px;
   gap: 16px;
@@ -532,6 +532,7 @@ h3 {
 /* algunas más altas */
 .masonry-slide:nth-child(1),
 .masonry-slide:nth-child(6),
+.masonry-slide:nth-child(9),
 .masonry-slide:nth-child(13) {
   grid-row: span 2;
 }
@@ -837,7 +838,7 @@ h3 {
 }
 
 footer {
-  background-image: url("/img/dark-green-texture.jpg");
+  background-image: url("/img/dark-green-texture.webp");
   background-position: top;
   background-size: cover;
   color: #fff;
