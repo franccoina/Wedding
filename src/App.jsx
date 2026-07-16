@@ -11,10 +11,6 @@ import {
   validateRsvpPayload,
 } from "./services/rsvpService";
 
-import weddingLogo from "../public/img/wedding-logo.webp";
-import invitationCover from "./assets/img/invitation-cover.webp";
-import invitationOpening from "./assets/vid/invitation-opening.mp4";
-
 import heroWedding from "./assets/img/hero-wedding.webp";
 import couple1 from "./assets/img/couple-1.webp";
 import couple2 from "./assets/img/couple-2.webp";
@@ -61,6 +57,10 @@ const dressCodeGallery = [
   { id: 8, src: reception, alt: "Papelería elegante de boda" },
   { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
 ];
+
+const weddingLogo = "/img/wedding-logo.webp";
+const invitationCover = "/img/invitation-cover.webp";
+const invitationOpening = "/vid/invitation-opening.mp4";
 
 const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! ¿Por favor podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
 
@@ -209,7 +209,7 @@ function App() {
           <BlossomCarousel className="masonry-carousel">
             {coupleGallery.map((image) => (
               <div className="masonry-slide" key={`couple-img-${image.id}`}>
-                <img src={image.src} alt={image.alt} />
+                <img src={image.src} loading="lazy" alt={image.alt} />
               </div>
             ))}
           </BlossomCarousel>
@@ -316,7 +316,7 @@ function App() {
           <BlossomCarousel className="masonry-carousel">
             {dressCodeGallery.map((image) => (
               <div className="masonry-slide" key={`dress-code-img-${image.id}`}>
-                <img src={image.src} alt={image.alt} />
+                <img src={image.src} loading="lazy" alt={image.alt} />
               </div>
             ))}
           </BlossomCarousel>
