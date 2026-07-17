@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
-import { BlossomCarousel, BlossomDots } from "@blossom-carousel/react";
 import { Analytics } from '@vercel/analytics/react';
 import { MusicToggle } from "./components/MusicToggle";
 import { backgroundAudioSrc } from "./config/rsvp";
@@ -30,7 +29,18 @@ import dress4 from "./assets/img/dress-4.webp";
 import ringsOrnament from "./assets/img/rings-ornament.webp";
 import bowOrnament from "./assets/img/bow-ornament.webp";
 import reception from "./assets/img/reception.webp";
-import "@blossom-carousel/react/style.css";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import './styles.css';
+
+// import required modules
+import { Pagination, Mousewheel } from 'swiper/modules';
 
 const weddingDate = new Date("2026-10-25T00:00:00-05:00");
 
@@ -207,15 +217,35 @@ function App() {
             de todos junto a las personas que hacen especial nuestra historia.
           </p>
 
-          <BlossomCarousel id="gallery-couple" className="carousel">
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            centeredSlides={true}
+            centeredSlidesBounds={true}
+            centerInsufficientSlides={true}
+            speed={600}
+            grabCursor
+            resistance
+            resistanceRatio={0.5}
+            longSwipesRatio={0.25}
+            watchSlidesProgress
+            grabCursor
+            simulateTouch
+            mousewheel={{
+              forceToAxis: true,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination, Mousewheel]}
+            className="mySwiper"
+          >
             {coupleGallery.map((image) => (
-              <div data-blossom-slide className="slide" key={`couple-img-${image.id}`}>
+              <SwiperSlide key={`couple-img-${image.id}`}>
                 <img src={image.src} loading="lazy" alt={image.alt} />
-              </div>
+              </SwiperSlide>
             ))}
-          </BlossomCarousel>
-          <br />
-          <BlossomDots for="gallery-couple" />
+          </Swiper>
         </section>
 
         <section className="countdown-section">
@@ -321,15 +351,35 @@ function App() {
             del color que más les guste. Les agradecemos reservar el blanco y sus tonos para la novia.
           </p>
 
-          <BlossomCarousel id="gallery-dress" className="carousel">
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={16}
+            centeredSlides={true}
+            centeredSlidesBounds={true}
+            centerInsufficientSlides={true}
+            speed={600}
+            grabCursor
+            resistance
+            resistanceRatio={0.5}
+            longSwipesRatio={0.25}
+            watchSlidesProgress
+            grabCursor
+            simulateTouch
+            mousewheel={{
+              forceToAxis: true,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination, Mousewheel]}
+            className="mySwiper"
+          >
             {dressCodeGallery.map((image) => (
-              <div data-blossom-slide className="slide" key={`dress-code-img-${image.id}`}>
+              <SwiperSlide key={`dress-code-img-${image.id}`}>
                 <img src={image.src} loading="lazy" alt={image.alt} />
-              </div>
+              </SwiperSlide>
             ))}
-          </BlossomCarousel>
-          <br />
-          <BlossomDots for="gallery-dress" />
+          </Swiper>
         </section>
 
         <section className="quote-section" style={{ backgroundImage: `url(${reception})` }}>
