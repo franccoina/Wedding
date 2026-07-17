@@ -268,7 +268,7 @@ function App() {
             <article>
               <h3>Cuándo</h3>
               <p>Domingo<br /><b>25 de octubre de 2026</b></p>
-              <small>Horario sujeto a itinerario</small>
+              <small>Horario detallado más abajo</small>
             </article>
             <article>
               <h3>Dónde</h3>
@@ -347,8 +347,8 @@ function App() {
           <h2>Vestimenta</h2>
 
           <p className="lead">
-            Inspirados por el bosque y las flores, los invitamos a vestir en tonos pastel o suaves,
-            del color que más les guste. Les agradecemos reservar el blanco y sus tonos para la novia.
+            Los invitamos a vestir con un atuendo elegante y cómodo para un entorno natural, eligiendo
+            tonos pastel o suaves. Les agradecemos reservar el blanco y sus tonalidades para la novia.
           </p>
 
           <Swiper
