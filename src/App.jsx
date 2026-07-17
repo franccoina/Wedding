@@ -50,13 +50,13 @@ const events = [
 ];
 
 const coupleGallery = [
-  { id: 1, src: couple1, alt: "Pareja viéndose de costado de cerca" },
+  { id: 1, src: couple1, alt: "Pareja viéndose abarazados de cerca" },
   { id: 2, src: couple2, alt: "Pareja caminando en un campo en sepia" },
   { id: 3, src: couple3, alt: "Pareja caminando agarrados del brazo" },
   { id: 4, src: couple4, alt: "Pareja viéndose sentados en blanco y negro" },
   { id: 5, src: couple5, alt: "Pareja agarrados de la mano de cerca" },
   { id: 6, src: couple6, alt: "Pareja corriendo en un campo en sepia" },
-  { id: 7, src: couple7, alt: "Pareja viéndose abarazados de cerca" },
+  { id: 7, src: couple7, alt: "Pareja viéndose de costado de cerca" },
   { id: 8, src: couple8, alt: "Pareja tocando sus manos de cerca en blanco y negro" },
   { id: 9, src: couple9, alt: "Pareja acostados en un campo" },
 ];
