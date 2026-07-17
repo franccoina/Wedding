@@ -12,6 +12,7 @@ export function useBackgroundMusic(src) {
   const [enabled, setEnabled] = useState(readPreference);
   const [playing, setPlaying] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
+  const wasPlayingBeforeHidden = useRef(false);
 
   // The audio element's "play"/"pause" events are the single source of truth
   // for `playing`, so this function never calls setState directly.
@@ -74,6 +75,35 @@ export function useBackgroundMusic(src) {
       window.removeEventListener("keydown", startAfterInteraction);
     };
   }, [attemptPlay, enabled]);
+
+  useEffect(() => {
+    const handleVisibilityChange = async () => {
+      const audio = audioRef.current;
+
+      if (!audio || unavailable) return;
+
+      if (document.hidden) {
+        wasPlayingBeforeHidden.current = !audio.paused;
+
+        if (!audio.paused) {
+          audio.pause();
+        }
+      } else if (enabled && wasPlayingBeforeHidden.current) {
+        await attemptPlay();
+      }
+    };
+
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
+
+    return () =>
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+  }, [attemptPlay, enabled, unavailable]);
 
   const toggle = useCallback(() => {
     setEnabled((current) => !current);

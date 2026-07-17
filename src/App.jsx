@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, X, Baby, User, UserPlus, ChevronDown } from "lucide-react";
-import { BlossomCarousel } from "@blossom-carousel/react";
+import { BlossomCarousel, BlossomDots } from "@blossom-carousel/react";
 import { Analytics } from '@vercel/analytics/react';
 import { MusicToggle } from "./components/MusicToggle";
 import { backgroundAudioSrc } from "./config/rsvp";
@@ -22,6 +22,11 @@ import couple7 from "./assets/img/couple-7.webp";
 import couple8 from "./assets/img/couple-8.webp";
 import couple9 from "./assets/img/couple-9.webp";
 
+import dress1 from "./assets/img/dress-1.webp";
+import dress2 from "./assets/img/dress-2.webp";
+import dress3 from "./assets/img/dress-3.webp";
+import dress4 from "./assets/img/dress-4.webp";
+
 import ringsOrnament from "./assets/img/rings-ornament.webp";
 import bowOrnament from "./assets/img/bow-ornament.webp";
 import reception from "./assets/img/reception.webp";
@@ -35,27 +40,22 @@ const events = [
 ];
 
 const coupleGallery = [
-  { id: 1, src: couple1, alt: "Pareja viéndose abarazados de cerca" },
+  { id: 1, src: couple1, alt: "Pareja viéndose de costado de cerca" },
   { id: 2, src: couple2, alt: "Pareja caminando en un campo en sepia" },
   { id: 3, src: couple3, alt: "Pareja caminando agarrados del brazo" },
   { id: 4, src: couple4, alt: "Pareja viéndose sentados en blanco y negro" },
-  { id: 5, src: couple5, alt: "Pareja corriendo en un campo en sepia" },
-  { id: 6, src: couple6, alt: "Pareja viéndose de costado de cerca" },
-  { id: 7, src: couple7, alt: "Pareja agarrados de la mano de cerca" },
+  { id: 5, src: couple5, alt: "Pareja agarrados de la mano de cerca" },
+  { id: 6, src: couple6, alt: "Pareja corriendo en un campo en sepia" },
+  { id: 7, src: couple7, alt: "Pareja viéndose abarazados de cerca" },
   { id: 8, src: couple8, alt: "Pareja tocando sus manos de cerca en blanco y negro" },
   { id: 9, src: couple9, alt: "Pareja acostados en un campo" },
 ];
 
 const dressCodeGallery = [
-  { id: 1, src: reception, alt: "Pareja caminando en una hacienda" },
-  { id: 2, src: reception, alt: "Papelería elegante de boda" },
-  { id: 3, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 4, src: reception, alt: "Pareja caminando en una hacienda" },
-  { id: 5, src: reception, alt: "Papelería elegante de boda" },
-  { id: 6, src: reception, alt: "Mesa de recepción iluminada con velas" },
-  { id: 7, src: reception, alt: "Pareja caminando en una hacienda" },
-  { id: 8, src: reception, alt: "Papelería elegante de boda" },
-  { id: 9, src: reception, alt: "Mesa de recepción iluminada con velas" },
+  { id: 1, src: dress1, alt: "Referencia de vestimenta masculina 1" },
+  { id: 2, src: dress2, alt: "Referencia de vestimenta femenina 1" },
+  { id: 3, src: dress3, alt: "Referencia de vestimenta masculina 2" },
+  { id: 4, src: dress4, alt: "Referencia de vestimenta femenina 2" },
 ];
 
 const weddingLogo = "/img/wedding-logo.webp";
@@ -201,18 +201,21 @@ function App() {
         <section className="gallery-section light-paper-section" id="bienvenida">
           <p className="kicker">Con mucha alegría</p>
           <h2>¡Nos casamos!</h2>
+
           <p className="lead">
             Después de compartir tantos caminos, queremos celebrar el más bonito
             de todos junto a las personas que hacen especial nuestra historia.
           </p>
 
-          <BlossomCarousel className="masonry-carousel">
+          <BlossomCarousel id="gallery-couple" className="carousel">
             {coupleGallery.map((image) => (
-              <div className="masonry-slide" key={`couple-img-${image.id}`}>
+              <div data-blossom-slide className="slide" key={`couple-img-${image.id}`}>
                 <img src={image.src} loading="lazy" alt={image.alt} />
               </div>
             ))}
           </BlossomCarousel>
+          <br />
+          <BlossomDots for="gallery-couple" />
         </section>
 
         <section className="countdown-section">
@@ -313,13 +316,20 @@ function App() {
           <p className="kicker">Referencias de</p>
           <h2>Vestimenta</h2>
 
-          <BlossomCarousel className="masonry-carousel">
+          <p className="lead">
+            Inspirados por el bosque y las flores, los invitamos a vestir en tonos pastel o suaves,
+            del color que más les guste. Les agradecemos reservar el blanco y sus tonos para la novia.
+          </p>
+
+          <BlossomCarousel id="gallery-dress" className="carousel">
             {dressCodeGallery.map((image) => (
-              <div className="masonry-slide" key={`dress-code-img-${image.id}`}>
+              <div data-blossom-slide className="slide" key={`dress-code-img-${image.id}`}>
                 <img src={image.src} loading="lazy" alt={image.alt} />
               </div>
             ))}
           </BlossomCarousel>
+          <br />
+          <BlossomDots for="gallery-dress" />
         </section>
 
         <section className="quote-section" style={{ backgroundImage: `url(${reception})` }}>
