@@ -162,7 +162,7 @@ export function Invitation() {
           <Swiper {...swiperSettings}>
             {coupleGallery.map((image) => (
               <SwiperSlide key={`couple-img-${image.id}`}>
-                <img src={image.src} loading="lazy" alt={image.alt} />
+                <img src={image.src} alt={image.alt} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -274,7 +274,7 @@ export function Invitation() {
           <Swiper {...swiperSettings}>
             {dressCodeGallery.map((image) => (
               <SwiperSlide key={`dress-code-img-${image.id}`}>
-                <img src={image.src} loading="lazy" alt={image.alt} />
+                <img src={image.src} alt={image.alt} />
               </SwiperSlide>
             ))}
           </Swiper>

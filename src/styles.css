@@ -503,6 +503,7 @@ h3 {
   height: 100%;
   margin-top: 48px;
   max-width: 816px;
+  border-radius: 10px;
 }
 
 .swiper-slide {
@@ -510,6 +511,7 @@ h3 {
   justify-content: center;
   align-items: center;
   cursor: grab;
+  border-radius: 10px;
   aspect-ratio: 3 / 4;
   height: 200px;
   width: auto;
