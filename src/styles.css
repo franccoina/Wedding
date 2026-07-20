@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Montserrat:wght@400;500;600&family=Imperial+Script&display=swap");
+/* Google Fonts are loaded via <link> in index.html (not @import here) so the
+   browser can discover and fetch them without waiting for this stylesheet. */
 @import "tailwindcss";
 
 :root {
@@ -538,7 +539,7 @@ h3 {
 }
 
 .swiper-pagination-bullet-active {
-  background: #4c330099;
+  background: #00000099;
 }
 
 .map-section {
@@ -725,6 +726,13 @@ h3 {
   clip-path: inset(50%);
 }
 
+/* The radio itself is visually hidden, so show focus on its label instead
+   -- otherwise keyboard users have no way to see which option is focused. */
+.attendance-field label:has(input:focus-visible) {
+  outline: 2px solid #536548;
+  outline-offset: 2px;
+}
+
 .confirmation-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -907,8 +915,30 @@ footer .ornament,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .music-toggle.is-playing {
     animation: none;
+  }
+
+  .invitation-cover,
+  .intro-poster,
+  .intro-video,
+  .brand,
+  .nav-links a,
+  .scroll-hint,
+  .outline-button,
+  .attendance-field label,
+  .attendance-field label svg,
+  .masonry-slide img,
+  .swiper-slide img,
+  .map-link,
+  .contact-link,
+  .submit-button,
+  .rsvp-confirmation button {
+    transition-duration: 0.01ms !important;
   }
 }
 

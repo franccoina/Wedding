@@ -10,6 +10,9 @@ export default defineConfig({
     // falls back to Vite's default when unset.
     port: process.env.PORT ? Number(process.env.PORT) : undefined,
   },
+  preview: {
+    port: process.env.PORT ? Number(process.env.PORT) : undefined,
+  },
   plugins: [
     react(),
     tailwindcss(),

@@ -83,18 +83,11 @@ ___Nota:__ Cada asistente debe completar y enviar su propia confirmacion. Si una
 - Direccion: via La Catedral, vereda El Vallano, km 4, Envigado, Antioquia.
 - Mapa: configurado en la seccion `Ubicacion`.
 
-## Datos Pendientes
+## Personalizar El Contenido
 
-El documento inicial no incluye:
-
-- Nombres de la pareja.
-- Hora del evento.
-- Lugar de la ceremonia.
-- Fotografias y videos personales.
-- Cancion para la invitacion.
-- Texto definitivo de cada seccion.
-
-Estos datos deben actualizarse en `src/App.jsx`.
+- Nombres, fecha, itinerario y textos de cada seccion: `src/components/Invitation.jsx`.
+- Sobre, video de apertura y hero: `src/components/Intro.jsx`.
+- Cancion de fondo: `public/audio/wedding-background.mp3` (ver `public/audio/README.md`).
 
 ## Conectar El Formulario A Google Sheets
 
@@ -166,14 +159,17 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 |   |   ├── img/
 |   |   └── vid/
 |   ├── components/
+|   |   ├── Intro.jsx        # Sobre, video de apertura y hero (carga inmediata)
+|   |   ├── Invitation.jsx   # Resto del contenido (carga diferida)
 |   |   └── MusicToggle.jsx
 |   ├── config/
-|   |   └── rsvp.js        # Endpoint, ruta de audio y etiquetas
+|   |   ├── rsvp.js        # Endpoint y etiquetas del formulario
+|   |   └── audio.js       # Ruta de la musica de fondo
 |   ├── hooks/
 |   |   └── useBackgroundMusic.js
 |   ├── services/
 |   |   └── rsvpService.js # Construye, valida y envia el RSVP
-|   ├── App.jsx
+|   ├── App.jsx             # Composicion raiz: Intro + Invitation + musica
 |   ├── main.jsx
 |   └── styles.css
 ├── .env.example
@@ -189,9 +185,14 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 
 ## Archivos Principales
 
-- `src/App.jsx`: contenido, secciones y comportamiento.
+- `src/App.jsx`: composicion raiz. Monta `Intro` siempre, y `Invitation` solo
+  despues de que el invitado empieza a abrir el sobre (para no competir por
+  ancho de banda con el video de apertura).
+- `src/components/Intro.jsx`: sobre, video de apertura, hero y navegacion.
+- `src/components/Invitation.jsx`: galerias, itinerario, mapas, regalos y el
+  formulario RSVP.
 - `src/styles.css`: estilos visuales y responsive.
-- `src/config/rsvp.js`: variables (endpoint, ruta de audio) y etiquetas.
+- `src/config/rsvp.js` / `src/config/audio.js`: variables de entorno y etiquetas.
 - `src/services/rsvpService.js`: construye, valida y envia el RSVP.
 - `src/hooks/useBackgroundMusic.js`: logica de la musica de fondo.
 - `src/components/MusicToggle.jsx`: control para activar/desactivar la musica.
@@ -219,4 +220,4 @@ Cada envio agregara una fila en la pestana `Confirmaciones`.
 - El script de Google protege las celdas frente a valores que comienzan con
   caracteres interpretables como formulas.
 - Para cambiar la fecha de la cuenta regresiva, modifica `weddingDate` en
-  `src/App.jsx`.
+  `src/components/Invitation.jsx`.

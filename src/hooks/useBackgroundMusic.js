@@ -31,7 +31,9 @@ export function useBackgroundMusic(src) {
     const audio = new Audio(src);
     audio.loop = true;
     audio.volume = defaultVolume;
-    audio.preload = "auto";
+    // Don't compete with the intro video/hero assets for bandwidth: the
+    // browser won't fetch audio bytes until play() is actually called.
+    audio.preload = "none";
     audioRef.current = audio;
 
     const markPlaying = () => setPlaying(true);
