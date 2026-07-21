@@ -62,7 +62,7 @@ const dressCodeGallery = [
 ];
 
 const contactMessage =
-  "¡Hola! ¿Podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
+  "¡Hola! ¿Podrías ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
 
 const contactWhatsAppUrl =
   `https://wa.me/573207701661?text=${encodeURIComponent(contactMessage)}`;
