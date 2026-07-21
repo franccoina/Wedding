@@ -61,7 +61,11 @@ const dressCodeGallery = [
   { id: 4, src: dress4, alt: "Referencia de vestimenta femenina 2" },
 ];
 
-const contactWhatsAppUrl = "https://wa.me/573207701661/?text=¡Hola! ¿Por favor podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
+const contactMessage =
+  "¡Hola! ¿Podrían ayudarme con indicaciones para llegar a los eventos de la boda? 😅🙏";
+
+const contactWhatsAppUrl =
+  `https://wa.me/573207701661?text=${encodeURIComponent(contactMessage)}`;
 
 const mapUrlReception = "https://www.google.com/maps?rlz=1C1GCEA_enCO1178CO1178&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDIzMjlqMGo3qAIAsAIA&um=1&ie=UTF-8&fb=1&gl=co&sa=X&geocode=KZXN_6HLg0aOMRPmvgEX_yRq&daddr=v%C3%ADa+la+catedral,+Vereda+el+vallano+%23Kil%C3%B3metro+4,+Envigado,+Antioquia";
 const mapEmbedUrlReception = "https://www.google.com/maps?q=Sagrado%20Medell%C3%ADn%2C%20V%C3%ADa%20La%20Catedral%2C%20Vereda%20El%20Vallano%2C%20Envigado%2C%20Antioquia&t=k&output=embed";
@@ -188,7 +192,7 @@ export function Invitation() {
             <article>
               <h3>Cuándo</h3>
               <p>Domingo<br /><b>25 de octubre de 2026</b></p>
-              <small>Horario detallado más abajo</small>
+              <a href="#itinerario" rel="noreferrer">Ver horarios</a>
             </article>
             <article>
               <h3>Dónde</h3>
@@ -197,13 +201,13 @@ export function Invitation() {
             </article>
             <article>
               <h3>Vestuario</h3>
-              <p>Código de vestuario<br /><b>Elegante</b></p>
-              <small>El blanco para la novia</small>
+              <p>Código de vestuario<br /><b>Jardín Elegante</b></p>
+              <a href="#vestimenta" rel="noreferrer">Ver referencias</a>
             </article>
           </div>
         </section>
 
-        <section className="schedule-section light-paper-section">
+        <section className="schedule-section light-paper-section" id="itinerario">
           <p className="kicker">No te pierdas nada</p>
           <h2>Itinerario</h2>
 
@@ -240,9 +244,12 @@ export function Invitation() {
           />
         </section>
 
-        <section className="schedule-section light-paper-section">
+        <section className="schedule-section light-paper-section" id="contacto">
           <h3>¿Necesitas más ayuda para llegar?</h3>
-          <p>A través de este medio puedes contactarnos por si necesitas orientación mas específica.</p>
+          <p>
+            Si requieres una orientación más específica o tienes algún imprevisto,
+            puedes contactarnos por este medio.
+          </p>
           <a className="contact-link" href={contactWhatsAppUrl} target="_blank" rel="noreferrer">Contactar vía WhatsApp</a>
         </section>
 

@@ -122,7 +122,7 @@ export function Intro({ onEnvelopeOpen }) {
           </a>
           <div className="nav-links">
             <a href="#detalles">El gran día</a>
-            <a href="#vestimenta">Indicaciones</a>
+            <a href="#contacto">Contacto</a>
             <a href="#confirmar">Confirmar</a>
           </div>
         </nav>
@@ -134,7 +134,7 @@ export function Intro({ onEnvelopeOpen }) {
             <span>Michael</span>
           </em></h1>
           <p className="hero-date">25 · 10 · 2026</p>
-          <a className="outline-button" href="#detalles">Descubre los detalles</a>
+          <a className="outline-button" href="#bienvenida">Descubre los detalles</a>
         </div>
         <a className="scroll-hint" href="#bienvenida" aria-label="Continuar">
           <b><ChevronDown aria-hidden="true" /></b>
