@@ -201,7 +201,7 @@ export function Invitation() {
             </article>
             <article>
               <h3>Vestuario</h3>
-              <p>Código de vestuario<br /><b>Jardín Elegante</b></p>
+              <p>Jardín Elegante<br /><b>Código de vestuario</b></p>
               <a href="#vestimenta" rel="noreferrer">Ver referencias</a>
             </article>
           </div>
