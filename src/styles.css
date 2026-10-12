@@ -780,9 +780,13 @@ h3 {
   margin-top: 8px;
   outline: none;
   padding: 11px 12px;
-  resize: vertical;
   transition: border .25s ease, box-shadow .25s ease;
   width: 100%;
+}
+
+.form-grid textarea {
+  resize: vertical;
+  min-height: 112px;
 }
 
 .form-grid input:focus,
@@ -853,6 +857,11 @@ footer {
   color: #fff;
   padding: 36px 24px;
   text-align: center;
+}
+
+footer span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
 }
 
 footer .signature {
